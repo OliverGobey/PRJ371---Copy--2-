@@ -1,0 +1,93 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f8ff; /* Light blue background */
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+h1 {
+    color: #007acc; /* Dark blue */
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h2 {
+    color: #005f99; /* Slightly darker shade of blue */
+    margin-bottom: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+    word-wrap: break-word; /* Prevent text from overflowing the cell */
+}
+
+th {
+    background-color: #e0f7ff; /* Lighter blue for headers */
+    color: #005f99; /* Darker text color for contrast */
+}
+
+td {
+    background-color: #f8fcff; /* Very light blue for table rows */
+    color: #333;
+}
+
+.tables-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    overflow-x: auto; /* Allow horizontal scrolling if content overflows */
+}
+
+.tables-container > div {
+    width: 45%;
+    max-width: 45%; /* Ensure the table containers don't expand beyond 45% */
+    overflow-x: auto; /* Allow scrolling for wide tables */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.tables-container table {
+    border-radius: 8px;
+    table-layout: fixed; /* Ensure the table's layout adapts to container */
+}
+
+button {
+    background-color: #007acc; /* Blue button */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin: 20px auto;
+}
+
+button:hover {
+    background-color: #005f99; /* Darker blue on hover */
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 122, 204, 0.6);
+}
