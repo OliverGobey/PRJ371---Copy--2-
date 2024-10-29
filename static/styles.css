@@ -1,10 +1,49 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Style */
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f0f8ff; /* Light blue background */
+    color: #333;
     margin: 0;
     padding: 0;
 }
 
+/* Header Styling */
+header {
+    background-color: #004080;
+    color: #fff;
+    padding: 1em 0;
+    text-align: center;
+}
+
+header h1 {
+    margin-bottom: 0.5em;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 1.5em;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+header nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Container Styling */
 .container {
     width: 90%;
     max-width: 1200px;
@@ -16,6 +55,60 @@ body {
     overflow: hidden;
 }
 
+/* Banner Section Styling */
+.banner {
+    position: relative;
+    background-image: url('https://blog.privatejetfinder.com/wp-content/uploads/2021/03/Daher-TBM-940.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 80vh;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.banner-overlay {
+    background-color: rgba(0, 0, 0, 0.5); /* Adds a dark overlay */
+    padding: 2em;
+    width: 100%;
+    max-width: 800px;
+}
+
+.banner h2 {
+    font-size: 2.5em;
+    margin-bottom: 0.5em;
+}
+
+.banner p {
+    font-size: 1.2em;
+    line-height: 1.5;
+}
+
+/* Section Styling */
+.section {
+    padding: 3em 0;
+}
+
+.section h2 {
+    text-align: center;
+    margin-bottom: 1em;
+    color: #004080;
+}
+
+.section .container {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#project-summary ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Heading Styling */
 h1 {
     color: #007acc; /* Dark blue */
     text-align: center;
@@ -27,6 +120,7 @@ h2 {
     margin-bottom: 10px;
 }
 
+/* Table Styling */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -50,26 +144,7 @@ td {
     color: #333;
 }
 
-.tables-container {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    overflow-x: auto; /* Allow horizontal scrolling if content overflows */
-}
-
-.tables-container > div {
-    width: 45%;
-    max-width: 45%; /* Ensure the table containers don't expand beyond 45% */
-    overflow-x: auto; /* Allow scrolling for wide tables */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-}
-
-.tables-container table {
-    border-radius: 8px;
-    table-layout: fixed; /* Ensure the table's layout adapts to container */
-}
-
+/* Button Styling */
 button {
     background-color: #007acc; /* Blue button */
     color: white;
@@ -90,4 +165,34 @@ button:hover {
 button:focus {
     outline: none;
     box-shadow: 0 0 8px rgba(0, 122, 204, 0.6);
+}
+
+/* Tables Container for Biometric Data */
+.tables-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    overflow-x: auto; /* Allow horizontal scrolling if content overflows */
+}
+
+.tables-container > div {
+    width: 45%;
+    max-width: 45%; /* Ensure the table containers don't expand beyond 45% */
+    overflow-x: auto; /* Allow scrolling for wide tables */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.tables-container table {
+    border-radius: 8px;
+    table-layout: fixed; /* Ensure the table's layout adapts to container */
+}
+
+/* Footer Styling */
+footer {
+    background-color: #004080;
+    color: #fff;
+    text-align: center;
+    padding: 1em 0;
+    margin-top: 2em;
 }

@@ -3,58 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biometric Data</title>
+    <title>Aviation Safety - Fatigue Monitoring & Biometric Data</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <div class="container">
-        <h1>Biometric Data</h1>
+    <!-- Header Section -->
+    <header>
+        <h1>Single Prop Aviation Safety</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#fatigue-monitoring">Fatigue Monitoring</a></li>
+                <li><a href="#project-summary">Project Summary</a></li>
+                <li><a href="#biometric-data">Biometric Data</a></li>
+            </ul>
+        </nav>
+    </header>
 
-        <!-- Button to Generate Biometric Data -->
-        <form action="{{ url_for('generate_biometrics') }}" method="post">
-            <label for="age_range">Select Age Range:</label>
-            <select id="age_range" name="age_range" required>
-                <option value="18-25">18-25</option>
-                <option value="26-35">26-35</option>
-                <option value="36-50">36-50</option>
-            </select>
-            <button type="submit" class="btn">Generate Biometric Data</button>
-        </form>
+    <!-- Landing Page Section -->
+    <section id="home" class="section banner">
+        <div class="banner-overlay">
+            <h2>Welcome to Our Safety Initiative</h2>
+            <p>This project is dedicated to enhancing aviation safety for hobbyist pilots, particularly those flying single-prop airplanes. We focus on reducing fatigue-related risks to improve pilot decision-making and reaction times.</p>
+        </div>
+    </section>
 
-        {% if error %}
-        <p style="color: red;">{{ error }}</p>
-        {% endif %}
+    <!-- Fatigue Monitoring Section -->
+    <section id="fatigue-monitoring" class="section">
+        <div class="container">
+            <h2>Fatigue Monitoring System</h2>
+            <p>Our system integrates biometric data to track pilots’ fatigue levels in real-time, analyzing indicators like heart rate, sleep patterns, and physical activity. This data-driven approach helps identify fatigue risks before they escalate, ensuring safer flights.</p>
+        </div>
+    </section>
 
-        <!-- Biometric Data Table -->
-        {% if biometric_data %}
-            <h2>Biometric Data for Pilots</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Heart Rate (BPM)</th>
-                        <th>Blood Oxygen (%)</th>
-                        <th>Blood Pressure (Systolic)</th>
-                        <th>Blood Pressure (Diastolic)</th>
-                        <th>Reaction Time (ms)</th>
-                        <th>Hours Slept</th>
-                        <th>Steps Walked Today</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for row in biometric_data %}
+    <!-- Project Summary Section -->
+    <section id="project-summary" class="section">
+        <div class="container">
+            <h2>Executive Summary</h2>
+            <p>This project aims to address the crucial safety concern of pilot fatigue. Through biometric monitoring, we gather data to analyze and mitigate fatigue-related risks, ultimately promoting a safer flying experience for hobbyist pilots.</p>
+            <h3>Project Objectives</h3>
+            <ul>
+                <li>Develop a biometric monitoring system using Fitbit API.</li>
+                <li>Enhance pilot training for improved emergency response.</li>
+                <li>Upgrade maintenance protocols and pre-flight checklists.</li>
+                <li>Promote a strong safety culture within aviation.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Biometric Data Section -->
+    <section id="biometric-data" class="section">
+        <div class="container">
+            <h2>Biometric Data</h2>
+
+            <!-- Form to Generate Biometric Data -->
+            <form action="{{ url_for('generate_biometrics') }}" method="post">
+                <label for="age_range">Select Age Range:</label>
+                <select id="age_range" name="age_range" required>
+                    <option value="18-25">18-25</option>
+                    <option value="26-35">26-35</option>
+                    <option value="36-50">36-50</option>
+                </select>
+                <button type="submit" class="btn">Generate Biometric Data</button>
+            </form>
+
+            {% if error %}
+            <p style="color: red;">{{ error }}</p>
+            {% endif %}
+
+            <!-- Biometric Data Table -->
+            {% if biometric_data %}
+                <h2>Biometric Data for Pilots</h2>
+                <table>
+                    <thead>
                         <tr>
-                            <td>{{ row['Heart Rate (BPM)'] }}</td>
-                            <td>{{ row['Blood Oxygen (%)'] }}</td>
-                            <td>{{ row['Blood Pressure (Systolic)'] }}</td>
-                            <td>{{ row['Blood Pressure (Diastolic)'] }}</td>
-                            <td>{{ row['Reaction Time (ms)'] }}</td>
-                            <td>{{ row['Hours Slept'] }}</td>
-                            <td>{{ row['Steps Walked Today'] }}</td>
+                            <th>Heart Rate (BPM)</th>
+                            <th>Blood Oxygen (%)</th>
+                            <th>Blood Pressure (Systolic)</th>
+                            <th>Blood Pressure (Diastolic)</th>
+                            <th>Reaction Time (ms)</th>
+                            <th>Hours Slept</th>
+                            <th>Steps Walked Today</th>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        {% endif %}
-    </div>
+                    </thead>
+                    <tbody>
+                        {% for row in biometric_data %}
+                            <tr>
+                                <td>{{ row['Heart Rate (BPM)'] }}</td>
+                                <td>{{ row['Blood Oxygen (%)'] }}</td>
+                                <td>{{ row['Blood Pressure (Systolic)'] }}</td>
+                                <td>{{ row['Blood Pressure (Diastolic)'] }}</td>
+                                <td>{{ row['Reaction Time (ms)'] }}</td>
+                                <td>{{ row['Hours Slept'] }}</td>
+                                <td>{{ row['Steps Walked Today'] }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; PRJ 3X1 Aviation Safety Group 2 Project</p>
+    </footer>
 </body>
 </html>
