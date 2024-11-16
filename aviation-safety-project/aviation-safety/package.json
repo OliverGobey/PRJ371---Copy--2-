@@ -1,0 +1,49 @@
+{
+  "name": "aviation-safety",
+  "version": "0.1.0",
+  "private": true,
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@fitbit/sdk": "^6.1.0",
+    "@fitbit/sdk-cli": "^1.7.3"
+  },
+  "fitbit": {
+    "appUUID": "73c0b888-d5e8-46f1-84eb-1eee0966c975",
+    "appType": "app",
+    "appDisplayName": "Aviation Safety",
+    "iconFile": "resources/icon.png",
+    "companionVersion": "1.0.0",
+    "wipeColor": "#ffffff",
+    "requestedPermissions": [
+      "access_heart_rate",
+      "access_eda",
+      "access_sleep",
+      "access_spo2",
+      "run_background",
+      "access_internet"
+    ],
+    "buildTargets": [
+      "atlas",
+      "vulcan"
+    ],
+    "i18n": {},
+    "defaultLanguage": "en-US"
+  },
+  "overrides": {
+    "got": ">=11.8.5",
+    "ws": ">=5.2.4"
+  },
+  "scripts": {
+    "build": "fitbit-build",
+    "debug": "fitbit"
+  },
+  "dependencies": {
+    "fp-ts": "^2.8.2",
+    "got": "^14.4.3",
+    "io-ts": "^2.2.10",
+    "ws": "^8.18.0"
+  },
+  "optionalDependencies": {
+    "bufferutil": "^4.0.8"
+  }
+}

@@ -7,138 +7,166 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <div class="container">
-        <h1>Data Table</h1>
 
-        {% if data %}
-        <h2>Uploaded Data</h2>
-        <table border="1">
-            <thead>
-                <tr>
-                    {% for col in columns %}
-                    <th>{{ col }}</th>
-                    {% endfor %}
-                </tr>
-            </thead>
-            <tbody>
-                {% for row in data %}
-                <tr>
-                    {% for col in columns %}
-                    <td>{{ row[col] }}</td>
-                    {% endfor %}
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        {% endif %}
+    <!-- Wrapper to ensure footer sticks to bottom -->
+    <div class="wrapper">
 
-        {% if simulated_data %}
-        <h2>Simulated Data</h2>
-        <table border="1">
-            <thead>
-                <tr>
-                    {% for col in columns %}
-                    <th>{{ col }}</th>
-                    {% endfor %}
-                </tr>
-            </thead>
-            <tbody>
-                {% for row in simulated_data %}
-                <tr>
-                    {% for col in columns %}
-                    <td>{{ row[col] }}</td>
-                    {% endfor %}
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        {% endif %}
+        <!-- Header Section -->
+        <header>
+            <h1>Single Prop Aviation Safety</h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('fatigue') }}">Fatigue Monitoring</a></li>
+                    <li><a href="{{ url_for('summary') }}">Project Summary</a></li>
+                    <li><a href="{{ url_for('data_table') }}">Biometric Data</a></li> 
+                    <li><a href="{{ url_for('metrics') }}">Metrics</a></li> 
+                </ul>
+            </nav>
+        </header>
 
-        {% if biometric_data %}
-        <h2>Biometric Data with Pilot Comparison</h2>
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>Metric</th>
-                    <th>Generated Value</th>
-                    <th>Average for Pilots</th>
-                    <th>Comparison</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for row in biometric_data %}
-                    <tr>
-                        <td>Heart Rate (BPM)</td>
-                        <td>{{ row['Heart Rate (BPM)'] }}</td>
-                        <td>{{ pilot_averages['Heart Rate (BPM)'] }}</td>
-                        <td>{{ row['Heart Rate (BPM) (Comparison)'] }}</td>
-                    </tr>
-                    <tr>
-                        <td>Blood Oxygen (%)</td>
-                        <td>{{ row['Blood Oxygen (%)'] }}</td>
-                        <td>{{ pilot_averages['Blood Oxygen (%)'] }}</td>
-                        <td>{{ row['Blood Oxygen (%) (Comparison)'] }}</td>
-                    </tr>
-                    <tr>
-                        <td>Blood Pressure (Systolic)</td>
-                        <td>{{ row['Blood Pressure (Systolic)'] }}</td>
-                        <td>{{ pilot_averages['Blood Pressure (Systolic)'] }}</td>
-                        <td>{{ row['Blood Pressure (Systolic) (Comparison)'] }}</td>
-                    </tr>
-                    <tr>
-                        <td>Blood Pressure (Diastolic)</td>
-                        <td>{{ row['Blood Pressure (Diastolic)'] }}</td>
-                        <td>{{ pilot_averages['Blood Pressure (Diastolic)'] }}</td>
-                        <td>{{ row['Blood Pressure (Diastolic) (Comparison)'] }}</td>
-                    </tr>
-                    <tr>
-                        <td>Reaction Time (ms)</td>
-                        <td>{{ row['Reaction Time (ms)'] }}</td>
-                        <td>{{ pilot_averages['Reaction Time (ms)'] }}</td>
-                        <td>{{ row['Reaction Time (ms) (Comparison)'] }}</td>
-                    </tr>
-                    <tr>
-                        <td>Hours Slept</td>
-                        <td>{{ row['Hours Slept'] }}</td>
-                        <td>{{ pilot_averages['Hours Slept'] }}</td>
-                        <td>{{ row['Hours Slept (Comparison)'] }}</td>
-                    </tr>
-                    <tr>
-                        <td>Steps Walked Today</td>
-                        <td>{{ row['Steps Walked Today'] }}</td>
-                        <td>{{ pilot_averages['Steps Walked Today'] }}</td>
-                        <td>{{ row['Steps Walked Today (Comparison)'] }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <!-- Main Content Section wrapped in .main-content for flexible layout -->
+        <div class="main-content">
+            <div class="container">
+                <h1>Data Table</h1>
 
-        <!-- Display warnings if any values are out of range -->
-        {% if warnings %}
-        <h2>Warnings</h2>
-        <ul>
-            {% for warning in warnings %}
-            <li style="color: red;">{{ warning }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
+                <!-- Fitness Evaluation Summary Section -->
+                <section>
+                    <h2>Fitness Evaluation Summary</h2>
+                    <p><strong>Total Points:</strong> {{ total_points }} / {{ min_points_threshold }}</p>
+                    <p><strong>Fitness Status:</strong> {{ summary }}</p>
 
-        <!-- Display a summary indicating if the pilot is fit to fly -->
-        {% if summary %}
-        <h3>{{ summary }}</h3>
-        {% endif %}
-        {% endif %}
+                    {% if warnings %}
+                    <h3>Warnings</h3>
+                    <ul>
+                        {% for warning in warnings %}
+                        <li style="color: red;">{{ warning }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </section>
 
-        <!-- Form to select age range and generate biometric data -->
-        <form action="{{ url_for('generate_biometrics') }}" method="POST">
-            <label for="age_range">Select Age Range:</label>
-            <select id="age_range" name="age_range" required>
-                <option value="18-25">18-25</option>
-                <option value="26-35">26-35</option>
-                <option value="36-50">36-50</option>
-            </select>
-            <button type="submit">Generate Biometric Data</button>
-        </form>
+                {% if data %}
+                <h2>Uploaded Data</h2>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            {% for col in columns %}
+                            <th>{{ col }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in data %}
+                        <tr>
+                            {% for col in columns %}
+                            <td>{{ row[col] }}</td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% endif %}
+
+                {% if simulated_data %}
+                <h2>Simulated Data</h2>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            {% for col in columns %}
+                            <th>{{ col }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in simulated_data %}
+                        <tr>
+                            {% for col in columns %}
+                            <td>{{ row[col] }}</td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% endif %}
+
+                {% if biometric_data %}
+                <h2>Biometric Data with Pilot Comparison</h2>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Generated Value</th>
+                            <th>Average for Pilots</th>
+                            <th>Comparison</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in biometric_data %}
+                            <tr>
+                                <td>Heart Rate (BPM)</td>
+                                <td>{{ row['Heart Rate (BPM)'] }}</td>
+                                <td>{{ pilot_averages['Heart Rate (BPM)'] }}</td>
+                                <td>{{ row['Heart Rate (BPM) (Comparison)'] }}</td>
+                            </tr>
+                            <tr>
+                                <td>Blood Oxygen (%)</td>
+                                <td>{{ row['Blood Oxygen (%)'] }}</td>
+                                <td>{{ pilot_averages['Blood Oxygen (%)'] }}</td>
+                                <td>{{ row['Blood Oxygen (%) (Comparison)'] }}</td>
+                            </tr>
+                            <tr>
+                                <td>Blood Pressure (Systolic)</td>
+                                <td>{{ row['Blood Pressure (Systolic)'] }}</td>
+                                <td>{{ pilot_averages['Blood Pressure (Systolic)'] }}</td>
+                                <td>{{ row['Blood Pressure (Systolic) (Comparison)'] }}</td>
+                            </tr>
+                            <tr>
+                                <td>Blood Pressure (Diastolic)</td>
+                                <td>{{ row['Blood Pressure (Diastolic)'] }}</td>
+                                <td>{{ pilot_averages['Blood Pressure (Diastolic)'] }}</td>
+                                <td>{{ row['Blood Pressure (Diastolic) (Comparison)'] }}</td>
+                            </tr>
+                            <tr>
+                                <td>Reaction Time (ms)</td>
+                                <td>{{ row['Reaction Time (ms)'] }}</td>
+                                <td>{{ pilot_averages['Reaction Time (ms)'] }}</td>
+                                <td>{{ row['Reaction Time (ms) (Comparison)'] }}</td>
+                            </tr>
+                            <tr>
+                                <td>Hours Slept</td>
+                                <td>{{ row['Hours Slept'] }}</td>
+                                <td>{{ pilot_averages['Hours Slept'] }}</td>
+                                <td>{{ row['Hours Slept (Comparison)'] }}</td>
+                            </tr>
+                            <tr>
+                                <td>Steps Walked Today</td>
+                                <td>{{ row['Steps Walked Today'] }}</td>
+                                <td>{{ pilot_averages['Steps Walked Today'] }}</td>
+                                <td>{{ row['Steps Walked Today (Comparison)'] }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% endif %}
+
+                <!-- Form to select age range and generate biometric data -->
+                <form action="{{ url_for('generate_biometrics') }}" method="POST">
+                    <label for="age_range">Select Age Range:</label>
+                    <select id="age_range" name="age_range" required>
+                        <option value="18-25">18-25</option>
+                        <option value="26-35">26-35</option>
+                        <option value="36-50">36-50</option>
+                    </select>
+                    <button type="submit">Generate Biometric Data</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; PRJ 3X1 Aviation Safety Group 2 Project</p>
+        </footer>
     </div>
 </body>
 </html>

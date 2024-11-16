@@ -82,6 +82,28 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+
+
+// Static BPM value for consistent heartbeat
+const heartRate = 75; // Example: 75 bpm
+
+// Function to set a static heartbeat animation duration
+function setStaticHeartbeat(bpm) {
+    const line = document.querySelector('.line');
+    const beatInterval = 60 / bpm; // Seconds per beat
+    line.style.animationDuration = `${beatInterval * 2}s`; // Set consistent duration
+}
+
+// Initialize the monitor with the static heart rate
+setStaticHeartbeat(heartRate);
+
+console.log('Heartbeat Monitor Active: Consistent Heartbeat');
+
+
+
+
+    
+
     // Function to display simulation results
     function displaySimulationResults(data) {
         let resultsHTML = '<table>';

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Health Metrics</title>
+</head>
+<body>
+    <header>
+        <h1>Single Prop Aviation Safety</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('fatigue') }}">Fatigue Monitoring</a></li>
+                <li><a href="{{ url_for('summary') }}">Project Summary</a></li>
+                <li><a href="{{ url_for('data_table') }}">Biometric Data</a></li>
+                <li><a href="{{ url_for('metrics') }}">Metrics</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <h1>Health Metrics</h1>
+
+    <!-- Button to insert sample data -->
+    <form action="{{ url_for('metrics') }}" method="post">
+        <button type="submit">Add Sample Data</button>
+    </form>
+
+    <!-- Table to display the metrics -->
+    <table>
+        <thead>
+            <tr>
+                <th>Timestamp</th>
+                <th>Heart Rate (BPM)</th>
+                <th>Blood Oxygen (SpO2)</th>
+                <th>Temperature (°C)</th>
+                <th>Blood Pressure (Systolic)</th>
+                <th>Blood Pressure (Diastolic)</th>
+                <th>Reaction Time (ms)</th>
+                <th>Hours Slept</th>
+                <th>Steps Walked</th>
+                <th>Alert</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in metrics %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+                <td>{{ row[5] }}</td>  <!-- Blood Pressure Systolic -->
+                <td>{{ row[6] }}</td>  <!-- Blood Pressure Diastolic -->
+                <td>{{ row[7] }}</td>  <!-- Reaction Time -->
+                <td>{{ row[8] }}</td>  <!-- Hours Slept -->
+                <td>{{ row[9] }}</td>  <!-- Steps Walked -->
+                <td>{{ row[4] if row[4] else 'Normal' }}</td>  <!-- Alert -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

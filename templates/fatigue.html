@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fatigue Monitoring</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script>
+        // Function to fetch biometric data and update the table
+        async function fetchBiometrics() {
+            const response = await fetch('/real_time_biometrics');
+            const data = await response.json();
+            
+            // Update table with real-time data
+            document.getElementById('heart-rate').innerText = data['Heart Rate (BPM)'];
+            document.getElementById('blood-oxygen').innerText = data['Blood Oxygen (%)'];
+            document.getElementById('bp-systolic').innerText = data['Blood Pressure (Systolic)'];
+            document.getElementById('bp-diastolic').innerText = data['Blood Pressure (Diastolic)'];
+            document.getElementById('reaction-time').innerText = data['Reaction Time (ms)'];
+            document.getElementById('hours-slept').innerText = data['Hours Slept'];
+            document.getElementById('steps-walked').innerText = data['Steps Walked Today'];
+        }
+
+        // Update biometric data every second
+        setInterval(fetchBiometrics, 1000);
+    </script>
+</head>
+<body>
+    <!-- Wrapper to ensure footer sticks to bottom -->
+    <div class="wrapper">
+
+        <header>
+            <h1>Single Prop Aviation Safety</h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('fatigue') }}">Fatigue Monitoring</a></li>
+                    <li><a href="{{ url_for('summary') }}">Project Summary</a></li>
+                    <li><a href="{{ url_for('data_table') }}">Biometric Data</a></li> 
+                    <li><a href="{{ url_for('metrics') }}">Metrics</a></li> 
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Main Content Section wrapped in .main-content for flexible layout -->
+        <div class="main-content">
+            <div class="container">
+                <h2>Real-Time Biometric Status</h2>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Heart Rate (BPM)</td>
+                            <td id="heart-rate">Loading...</td>
+                        </tr>
+                        <tr>
+                            <td>Blood Oxygen (%)</td>
+                            <td id="blood-oxygen">Loading...</td>
+                        </tr>
+                        <tr>
+                            <td>Blood Pressure (Systolic)</td>
+                            <td id="bp-systolic">Loading...</td>
+                        </tr>
+                        <tr>
+                            <td>Blood Pressure (Diastolic)</td>
+                            <td id="bp-diastolic">Loading...</td>
+                        </tr>
+                        <tr>
+                            <td>Reaction Time (ms)</td>
+                            <td id="reaction-time">Loading...</td>
+                        </tr>
+                        <tr>
+                            <td>Hours Slept</td>
+                            <td id="hours-slept">Loading...</td>
+                        </tr>
+                        <tr>
+                            <td>Steps Walked Today</td>
+                            <td id="steps-walked">Loading...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="heart_body">
+            <div class="heart"></div>
+        </div>
+
+
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; PRJ 3X1 Aviation Safety Group 2 Project</p>
+        </footer>
+    </div>
+</body>
+</html>

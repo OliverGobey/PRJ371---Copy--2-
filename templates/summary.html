@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Summary</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <!-- Wrapper to ensure footer sticks to bottom -->
+    <div class="wrapper">
+
+        <!-- Header Section -->
+        <header>
+            <h1>Single Prop Aviation Safety</h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('fatigue') }}">Fatigue Monitoring</a></li>
+                    <li><a href="{{ url_for('summary') }}">Project Summary</a></li>
+                    <li><a href="{{ url_for('data_table') }}">Biometric Data</a></li> 
+                    <li><a href="{{ url_for('metrics') }}">Metrics</a></li> 
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Main content section wrapped in .main-content for flexible layout -->
+        <div class="main-content">
+            <section>
+                <h2>Project Summary</h2>
+                <p>This project addresses the critical challenge of pilot fatigue, a leading cause of impaired performance and increased safety risks in aviation. Despite extensive training and protocols, fatigue remains a persistent issue, affecting pilots' response times, decision-making, and overall operational performance. The project aims to create a solution that proactively monitors and mitigates fatigue to enhance safety within the single-prop aviation sector.</p>
+
+                <h3>Problem Statement</h3>
+                <p>Pilots often endure demanding schedules and lengthy flights, which contribute to cumulative fatigue over time. Traditional methods for managing fatigue rely heavily on self-assessment, which can be unreliable and subjective. This project recognizes the need for an objective, real-time solution that allows pilots to monitor their fatigue levels and receive timely interventions when necessary.</p>
+
+                <h3>Solution Overview</h3>
+                <p>The Pilot Fatigue Monitoring System integrates wearable biometric monitoring technology, similar to a Fitbit, but customized with the FitBit OS to simulate a dedicated aviation fatigue monitoring system. One key advantage is that the system functions independently of an internet connection, allowing pilots to access real-time monitoring and alerts even while in the sky without Wi-Fi access. The system continuously tracks health metrics to indicate fatigue levels, including heart rate, oxygen saturation, blood pressure, reaction time, and sleep quality.</p>
+
+                <h3>Key Components</h3>
+                <ul>
+                    <li><strong>Biometric Data Capture:</strong> Real-time data from the wearable device provides insights into the pilot’s physical state, including fatigue indicators like elevated heart rate variability, low oxygen saturation, irregular blood pressure, slowed reaction times, and disrupted sleep patterns.</li>
+                    <li><strong>Software Interface:</strong> The system displays these metrics and identifies patterns in a clear, user-friendly interface, allowing pilots to manage fatigue effectively with actionable insights and recommendations.</li>
+                    <li><strong>Fatigue Analysis and Alerts:</strong> Algorithms assess data patterns and detect potential fatigue, triggering notifications and suggesting actions such as rest breaks, hydration, or alertness exercises.</li>
+                </ul>
+
+                <h3>Key Objectives</h3>
+                <ul>
+                    <li>Develop a biometric monitoring system.</li>
+                    <li>Enhance pilot training and emergency response.</li>
+                    <li>Improve maintenance protocols and pre-flight checklists.</li>
+                    <li>Promote a safety culture within aviation.</li>
+                </ul>
+
+                <h3>Future Developments</h3>
+                <p>Looking forward, several potential advancements can enhance the Pilot Fatigue Monitoring System and broaden its applications:</p>
+                <ul>
+                    <li><strong>Heads-Up Display (HUD) Integration:</strong> Expanding the system to project fatigue metrics and alerts directly into the pilot’s HUD, allowing for continuous monitoring without distraction.</li>
+                    <li><strong>Expansion Beyond Aviation:</strong> Adapting the system for non-aviation applications such as for hikers, industrial workers, drivers, and other users who require fatigue monitoring to enhance safety and well-being during long or strenuous activities.</li>
+                    <li><strong>Enhanced Machine Learning for Personalized Insights:</strong> Developing algorithms that use machine learning to deliver personalized fatigue predictions and recommendations based on individual health profiles and activity history.</li>
+                    <li><strong>Integration with Scheduling and Alert Systems:</strong> Integrating the system with pilots’ schedules to recommend rest times and optimize shift assignments based on individual fatigue data.</li>
+                    <li><strong>Standalone Mobile Application:</strong> Creating a mobile app version to expand accessibility, enabling users in various fields to track and manage fatigue on the go.</li>
+                </ul>
+            </section>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; PRJ 3X1 Aviation Safety Group 2 Project</p>
+        </footer>
+    </div>
+</body>
+</html>

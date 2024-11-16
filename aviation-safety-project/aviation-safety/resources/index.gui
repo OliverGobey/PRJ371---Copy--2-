@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="300" height="348">
+  <g>
+    <text id="heartRateLabel" x="10" y="20" font-size="24" fill="#000">Heart Rate: </text>
+    <text id="edaLabel" x="10" y="60" font-size="24" fill="#000">Stress Level: </text>
+    <text id="skinTempLabel" x="10" y="100" font-size="24" fill="#000">Skin Temp: </text>
+    <text id="spo2Label" x="10" y="140" font-size="24" fill="#000">SpO2: </text>
+    <text id="sleepQualityLabel" x="10" y="180" font-size="24" fill="#000">Sleep Quality: </text>
+  </g>
+</svg>

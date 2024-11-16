@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aviation Safety - Fatigue Monitoring & Biometric Data</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <!-- Header Section -->
@@ -12,19 +13,20 @@
         <h1>Single Prop Aviation Safety</h1>
         <nav>
             <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#fatigue-monitoring">Fatigue Monitoring</a></li>
-                <li><a href="#project-summary">Project Summary</a></li>
-                <li><a href="#biometric-data">Biometric Data</a></li>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('fatigue') }}">Fatigue Monitoring</a></li>
+                <li><a href="{{ url_for('summary') }}">Project Summary</a></li>
+                <li><a href="{{ url_for('data_table') }}">Biometric Data</a></li> 
+                <li><a href="{{ url_for('metrics') }}">Metrics</a></li> 
             </ul>
         </nav>
     </header>
 
-    <!-- Landing Page Section -->
+    <!-- Landing Page Section (Moved Up) -->
     <section id="home" class="section banner">
         <div class="banner-overlay">
-            <h2>Welcome to Our Safety Initiative</h2>
-            <p>This project is dedicated to enhancing aviation safety for hobbyist pilots, particularly those flying single-prop airplanes. We focus on reducing fatigue-related risks to improve pilot decision-making and reaction times.</p>
+            <h2>Enhancing Aviation Safety</h2> <!-- Textbox moved higher -->
+            <p>Welcome to the future of aviation safety for single-prop pilots. Our initiative tackles fatigue—the hidden risk—by leveraging cutting-edge biometric data to improve reaction times and decision-making, ensuring safer skies.</p>
         </div>
     </section>
 
@@ -32,81 +34,43 @@
     <section id="fatigue-monitoring" class="section">
         <div class="container">
             <h2>Fatigue Monitoring System</h2>
-            <p>Our system integrates biometric data to track pilots’ fatigue levels in real-time, analyzing indicators like heart rate, sleep patterns, and physical activity. This data-driven approach helps identify fatigue risks before they escalate, ensuring safer flights.</p>
+            <p>Pilot fatigue is one of the most critical threats to aviation safety. Our innovative system uses real-time biometric analysis—monitoring heart rate, sleep patterns, and physical activity—to detect fatigue early and prevent incidents before they occur.</p>
+            
+            <!-- Biometric Metrics Section -->
+            <div class="biometric-details">
+                <h3>Biometric Metrics We Monitor</h3>
+                <ul class="fancy-icons">
+                    <li><i class="fas fa-heartbeat"></i> <strong>Heart Rate:</strong> Tracks beats per minute to identify stress and fatigue levels.</li>
+                    <li><i class="fas fa-lungs"></i> <strong>Blood Oxygen:</strong> Measures oxygen saturation in the blood to assess overall health.</li>
+                    <li><i class="fas fa-thermometer-half"></i> <strong>Temperature:</strong> Monitors body temperature fluctuations to detect anomalies.</li>
+                    <li><i class="fas fa-tachometer-alt"></i> <strong>Blood Pressure (Systolic):</strong> Measures the pressure in arteries during heartbeats.</li>
+                    <li><i class="fas fa-tachometer-alt"></i> <strong>Blood Pressure (Diastolic):</strong> Tracks the pressure in arteries between beats.</li>
+                    <li><i class="fas fa-stopwatch"></i> <strong>Reaction Time:</strong> Captures response speed to gauge cognitive alertness.</li>
+                    <li><i class="fas fa-bed"></i> <strong>Hours Slept:</strong> Records sleep duration to evaluate restfulness and fatigue risk.</li>
+                    <li><i class="fas fa-shoe-prints"></i> <strong>Steps Walked:</strong> Counts daily steps to understand physical activity levels.</li>
+                </ul>
+            </div>
         </div>
     </section>
 
-    <!-- Project Summary Section -->
-    <section id="project-summary" class="section">
-        <div class="container">
-            <h2>Executive Summary</h2>
-            <p>This project aims to address the crucial safety concern of pilot fatigue. Through biometric monitoring, we gather data to analyze and mitigate fatigue-related risks, ultimately promoting a safer flying experience for hobbyist pilots.</p>
-            <h3>Project Objectives</h3>
-            <ul>
-                <li>Develop a biometric monitoring system using Fitbit API.</li>
-                <li>Enhance pilot training for improved emergency response.</li>
-                <li>Upgrade maintenance protocols and pre-flight checklists.</li>
-                <li>Promote a strong safety culture within aviation.</li>
-            </ul>
-        </div>
-    </section>
+    <div class="intro-block">
+        <div class="monitor">
+    <?xml version="1.0" encoding="utf-8"?>
+                        <!-- Generator: Adobe Illustrator 21.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                             viewBox="0 0 500 200" style="enable-background:new 0 0 500 200;" xml:space="preserve">
+                        <g>
+                            <polyline class="ekg" points="486.6,113.8 328.2,113.8 310.3,132.3 296,70.7 246.8,127.4 241.6,120.2 233.9,166.4 227,27.6 
+                                213.2,118.3 211.8,112.3 205.1,126.1 198.2,108.5 194.1,124.4 184.5,92.9 174.1,113 4.3,113 	"/>
+                        </g>
+                        </svg>
+    </div>
+    </div> 
 
-    <!-- Biometric Data Section -->
-    <section id="biometric-data" class="section">
-        <div class="container">
-            <h2>Biometric Data</h2>
-
-            <!-- Form to Generate Biometric Data -->
-            <form action="{{ url_for('generate_biometrics') }}" method="post">
-                <label for="age_range">Select Age Range:</label>
-                <select id="age_range" name="age_range" required>
-                    <option value="18-25">18-25</option>
-                    <option value="26-35">26-35</option>
-                    <option value="36-50">36-50</option>
-                </select>
-                <button type="submit" class="btn">Generate Biometric Data</button>
-            </form>
-
-            {% if error %}
-            <p style="color: red;">{{ error }}</p>
-            {% endif %}
-
-            <!-- Biometric Data Table -->
-            {% if biometric_data %}
-                <h2>Biometric Data for Pilots</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Heart Rate (BPM)</th>
-                            <th>Blood Oxygen (%)</th>
-                            <th>Blood Pressure (Systolic)</th>
-                            <th>Blood Pressure (Diastolic)</th>
-                            <th>Reaction Time (ms)</th>
-                            <th>Hours Slept</th>
-                            <th>Steps Walked Today</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for row in biometric_data %}
-                            <tr>
-                                <td>{{ row['Heart Rate (BPM)'] }}</td>
-                                <td>{{ row['Blood Oxygen (%)'] }}</td>
-                                <td>{{ row['Blood Pressure (Systolic)'] }}</td>
-                                <td>{{ row['Blood Pressure (Diastolic)'] }}</td>
-                                <td>{{ row['Reaction Time (ms)'] }}</td>
-                                <td>{{ row['Hours Slept'] }}</td>
-                                <td>{{ row['Steps Walked Today'] }}</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            {% endif %}
-        </div>
-    </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; PRJ 3X1 Aviation Safety Group 2 Project</p>
+        <p>&copy; 2024 Aviation Safety Group 2 | All Rights Reserved</p>
     </footer>
 </body>
 </html>
